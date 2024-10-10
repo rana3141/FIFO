@@ -12,6 +12,7 @@ input [WIDTH-1:0] wdata;
 output reg [WIDTH-1:0] rdata;
 output reg empty,full,wr_error,rd_error;
 
+// Internal variables
 reg [PTR_WIDTH-1:0] wr_ptr, rd_ptr;
 reg wr_toggle_f, rd_toggle_f;
 
@@ -62,9 +63,9 @@ always @(posedge clk) begin
 end
 
 // Rollover logic
-// When only write ptr roll overs - FULL
-// When both read and write ptrs roll over - EMPTY
-
+// When only write ptr roll overs - FULL i.e no location available to write
+// When both read and write ptrs roll over - EMPTY i.e no location available to read from.
+	
   assign full  = (wr_ptr==rd_ptr && wr_toggle_f != rd_toggle_f) ? 1 : 0;
   assign empty = (wr_ptr==rd_ptr && wr_toggle_f == rd_toggle_f) ? 1 : 0;
 endmodule

@@ -16,12 +16,13 @@ input [WIDTH-1:0] wdata;
 output reg [WIDTH-1:0] rdata;
 output reg empty,full,wr_error,rd_error;
 
+// Internal signals
 reg [PTR_WIDTH-1:0] wr_ptr, rd_ptr;
 reg wr_toggle_f, rd_toggle_f; 
 
 reg [WIDTH-1:0] buffer [DEPTH-1:0];
 
-//new regs for synchronizer
+// Internal signals for synchronizer
 reg [PTR_WIDTH-1:0] rd_ptr_wr_clk,wr_ptr_rd_clk;
 reg rd_toggle_f_wr_clk,wr_toggle_f_rd_clk;
 
